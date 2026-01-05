@@ -1,6 +1,6 @@
 # pipelines/static_pipeline.py
 """
-Static Invisibility Cloaking Pipeline
+Static Invisibility Cloaking/Concealment Pipeline
 
 A complete pipeline for static background replacement / object removal
 using segmentation, inpainting, lighting matching and optional super-resolution.
