@@ -1,0 +1,57 @@
+# config/default_config.yaml
+# Default configuration for the Invisibility Cloaking / Advanced Object Removal Pipeline
+# All paths are relative to project root unless absolute
+
+system:
+  device: "cuda"               # "cuda", "cpu", "mps"
+  precision: "fp16"            # "fp16" (faster, less accurate), "fp32" (more accurate)
+  num_workers: 4               # DataLoader workers (0 = main thread only)
+
+detector:
+  model: "yolov8m-seg"         # Base model variant: yolov8n-seg, s, m, l, x
+  weights: "weights/yolov8m-seg.pt"
+  conf_threshold: 0.25         # Updated from 0.2 → more common default
+  iou_threshold: 0.45
+  input_size: 640
+  target_classes:              # Classes to detect/remove (COCO names)
+    - person
+    - car
+    - truck
+    - bus
+
+shadow:
+  deepshadow_weights: "weights/deepshadow.pt"
+  scotch_weights: "weights/scotch_soda.pt"
+  threshold: 0.5
+  dilation: 3
+  fusion: "union"              # "union", "intersection", "deepshadow_only"
+
+inpainter:
+  model: "lama"
+  weights: "weights/big-lama.pt"
+  resolution: 512
+  tile_size: 512
+  tile_overlap: 64
+  refinement_passes: 1
+
+enhancer:
+  model: "esrgan"
+  weights: "weights/esrgan_x4.pt"
+  scale: 4
+  tile_size: 256               # For memory-efficient upscaling
+
+discriminator:
+  weights: "weights/patchgan.pt"
+  patch_size: 70
+  realism_threshold: 0.90
+
+temporal:
+  window_size: 5
+  blend_weight: 0.40
+  patch_size: 16
+  num_heads: 8
+
+output:
+  format: "mp4"                # "mp4", "avi", "png" (for frames)
+  quality: 95                  # JPEG quality or CRF for video
+  save_intermediates: false    # Save masks, inpainted frames, etc.
