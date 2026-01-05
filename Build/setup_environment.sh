@@ -5,7 +5,7 @@
 #
 # This script:
 #   - Creates a fresh conda environment
-#   - Installs PyTorch with CUDA 12.1 support
+#   - Installs PyTorch with CUDA 11.7 support
 #   - Installs project-specific dependencies with pinned versions
 #   - Verifies key imports (PyTorch, CUDA, YOLOv8)
 #
@@ -24,11 +24,11 @@ set -euo pipefail  # Exit on error, undefined variables, and pipe failures
 
 # ─── Configuration ────────────────────────────────────────────────────────────
 
-ENV_NAME="invisibility_cloak"
+ENV_NAME="cudatest"
 PYTHON_VERSION="3.11"
 
 # PyTorch + CUDA version (adjust index-url if you need different CUDA)
-PYTORCH_INDEX="https://download.pytorch.org/whl/cu121"
+PYTORCH_INDEX="https://download.pytorch.org/whl/cu117"
 PYTORCH_VERSION="2.1.0"
 TORCHVISION_VERSION="0.16.0"
 
