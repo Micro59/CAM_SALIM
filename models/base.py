@@ -1,7 +1,7 @@
 """
 models/base.py
 
-Abstract base classes defining the core interfaces for the invisibility cloaking pipeline.
+Abstract base classes defining the core interfaces for the concealment/cloaking pipeline.
 
 All concrete model implementations (YOLOv8, LaMa, ESRGAN, PatchGAN, etc.) should inherit from
 these base classes to ensure consistent API across the system.
